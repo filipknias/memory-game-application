@@ -1,0 +1,31 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.wrapper {
+  background-color: $background-light;
+  min-height: 100vh;
+
+  .content {
+    width: 40%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    @include centerContent();
+    flex-direction: column;
+    gap: 80px;
+
+    @media screen and (max-width: $breakpoint-lg) {
+      width: 60%;
+    }
+
+    @media screen and (max-width: $breakpoint-md) {
+      width: 80%;
+      padding: 10px;
+    }
+
+    @media screen and (max-width: $breakpoint-sm) {
+      width: 90%;
+      padding: 5px;
+    }
+  }
+}
