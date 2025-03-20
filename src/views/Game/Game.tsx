@@ -1,13 +1,16 @@
 import { DEFAULT_GRID_SIZE, DEFAULT_PLAYERS_COUNT, DEFAULT_THEME } from "@/constants/defaults";
 import { GridSize, PlayersCount, Theme } from "@/shared/types";
-import { useMemo } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import styles from "./Game.module.scss";
 import GameHeader from "@/components/GameHeader/GameHeader";
+import GameBoard from "@/components/GameBoard/GameBoard";
+import { useGameStore } from "@/store";
+import { generateMemoryItems } from "@/utilities/generateMemoryItems";
 
 const Game = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { setupPlayers, setMemoryItems } = useGameStore();
 
   const theme = useMemo((): Theme => {
     const theme = searchParams.get('theme');
@@ -27,12 +30,23 @@ const Game = () => {
     return DEFAULT_GRID_SIZE;
   }, [searchParams]);
 
+  useEffect(() => {
+    setupPlayers(playersCount);
+  }, [playersCount]);
+
+  useEffect(() => {
+   setMemoryItems(generateMemoryItems(theme, gridSize));
+  }, [theme, gridSize]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <GameHeader />
-        {/* <GameBoard gridSize={gridSize} playersCount={playersCount} />
-        <BoardStatus>
+        <GameBoard 
+          gridSize={gridSize} 
+          playersCount={playersCount} 
+        />
+        {/* <BoardStatus>
           {playersCount === 1 ? <SinglePlayerBoardStatus /> : <MultiPlayerBoardStatus />}
         </BoardStatus> */}
       </div>

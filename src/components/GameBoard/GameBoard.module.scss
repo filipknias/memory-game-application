@@ -1,0 +1,65 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.wrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 70%;
+  @media screen and (max-width: $breakpoint-sm) {
+    width: 80%;
+  }
+  &.gridSize4 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    .memoryTile {
+      height: 100px;
+      width: 100px;
+      @media screen and (max-width: $breakpoint-md) {
+        height: 80px;
+        width: 80px;
+        font-size: 25px;
+      }
+      @media screen and (max-width: $breakpoint-sm) {
+        height: 60px;
+        width: 60px;
+      }
+    }
+  }
+  &.gridSize6 {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    .memoryTile {
+      height: 80px;
+      width: 80px;
+      @media screen and (max-width: $breakpoint-md) {
+        font-size: 30px;
+        height: 60px;
+        width: 60px;
+      }
+      @media screen and (max-width: $breakpoint-sm) {
+        height: 40px;
+        width: 40px;
+        font-size: 20px;
+      }
+    }
+  }
+  .memoryTile {
+    border-radius: 50%;
+    background-color: $text-dark;
+    @include centerContent(); 
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: $font-bold;
+    color: white;
+    transition: all 0.2s ease-out;
+    &.opened {
+      background-color: $orange;
+    }
+    &.discovered {
+      background-color: $light-gray;
+      cursor: default;
+    }
+  }
+}
