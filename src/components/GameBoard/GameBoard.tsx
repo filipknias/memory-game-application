@@ -4,7 +4,7 @@ import { GameBoardProps } from './GameBoard.types';
 import cx from "clsx";
 import { useEffect, useState } from 'react';
 import { MemoryItem } from '@/store/types';
-import { useTimer } from '@/hooks/useTimer';
+import WinnerModal from '../WinnerModal/WinnerModal';
 
 const GameBoard = ({ gridSize, playersCount }: GameBoardProps) => {
   const [clickDisabled, setClickDisabled] = useState(false);
@@ -18,10 +18,12 @@ const GameBoard = ({ gridSize, playersCount }: GameBoardProps) => {
     players,
     playerIdTurn,
     increasePlayerMoves,
+    stopTimer
   } = useGameStore();
-  const timer = useTimer();
 
   useEffect(() => {
+    if (memoryItems.length === 0) return;
+
     const openedItems = memoryItems.filter((item) => item.opened);
     if (openedItems.length >= 2) {
       setClickDisabled(true);
@@ -31,7 +33,7 @@ const GameBoard = ({ gridSize, playersCount }: GameBoardProps) => {
     
     const discoveredMemoryItems = memoryItems.filter((item) => item.discovered);
     if (discoveredMemoryItems.length === memoryItems.length) {
-      timer.stopTimer();
+      stopTimer();
       setWinnerModalOpen(true);
     }
   }, [memoryItems]);
@@ -82,7 +84,12 @@ const GameBoard = ({ gridSize, playersCount }: GameBoardProps) => {
           {item.opened || item.discovered ? item.content : null}
         </div>
       ))}
-      {/* {winnerModalOpen && <WinnerModal playersCount={playersCount} closeModal={() => setWinnerModalOpen(false)} />} */}
+      {winnerModalOpen && (
+        <WinnerModal 
+          playersCount={playersCount} 
+          closeModal={() => setWinnerModalOpen(false)} 
+        />
+      )}
     </div>
   )
 };

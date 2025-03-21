@@ -3,10 +3,12 @@ import { GameState, MemoryItem, Player } from './types';
 import { GridSize, Theme } from '@/shared/types';
 import { generateMemoryItems } from '@/utilities/generateMemoryItems';
 
-export const useGameStore = create<GameState>()((set) => ({
+export const useGameStore = create<GameState>()((set, get) => ({
   players: [],
   memoryItems: [],
   playerIdTurn: 0,
+  time: 0,
+  intervalId: null,
   
   increasePlayerPoints: (playerId: number) => {
     set((state) => ({
@@ -79,9 +81,11 @@ export const useGameStore = create<GameState>()((set) => ({
   },
 
   resetGame: (theme: Theme, gridSize: GridSize) => {
-    set({
+    set((state) => ({
       memoryItems: generateMemoryItems(theme, gridSize),
-    });
+      playerIdTurn: 1,
+      players: state.players.map((player) => ({ ...player, points: 0, moves: 0 })),
+    }));
   },
 
   setupPlayers: (playersCount: number) => {
@@ -98,4 +102,30 @@ export const useGameStore = create<GameState>()((set) => ({
   setMemoryItems: (memoryItems: MemoryItem[]) => {
     set({ memoryItems });
   }, 
+
+  startTimer: () => {
+    if (get().intervalId) return;
+
+    const id = setInterval(() => {
+      set((state) => ({ time: state.time + 1 }));
+    }, 1000);
+
+    set({ intervalId: id });
+  },
+
+  stopTimer: () => {
+    clearInterval(Number(get().intervalId));
+    set({ intervalId: null });
+  },
+
+  resetTimer: () => {
+    clearInterval(Number(get().intervalId));
+    set({ time: 0, intervalId: null });
+
+    const id = setInterval(() => {
+      set((state) => ({ time: state.time + 1 }));
+    }, 1000);
+
+    set({ intervalId: id });
+  }
 }))

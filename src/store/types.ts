@@ -1,9 +1,14 @@
-import { GridSize, Theme, Timer } from "@/shared/types";
+import { GridSize, Theme } from "@/shared/types";
 
 export type GameState = {
   players: Player[];
   memoryItems: MemoryItem[];
   playerIdTurn: number;
+  intervalId: NodeJS.Timer|null;
+  time: number;
+  startTimer: () => void;
+  stopTimer: () => void;
+  resetTimer: () => void;
   increasePlayerPoints: (playerId: number) => void;
   increasePlayerMoves: (playerId: number, playersCount: number) => void;
   markMemoryItemOpened: (itemId: number) => void;

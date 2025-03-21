@@ -5,13 +5,13 @@ import { useTimer } from '@/hooks/useTimer';
 
 const SinglePlayerBoardStatus = () => {
   const { playerIdTurn, players } = useGameStore();
-  const timer = useTimer();
+  const timeString = useTimer();
  
-  const timeString = useMemo(() => {
-    let secondsString = `${timer.seconds}`;
-    if (timer.seconds < 10) secondsString = '0' + secondsString;
-    return `${timer.minutes}:${secondsString}`;
-  }, [timer.seconds, timer.minutes]);
+  // const timeString = useMemo(() => {
+  //   let secondsString = `${timer.seconds}`;
+  //   if (timer.seconds < 10) secondsString = '0' + secondsString;
+  //   return `${timer.minutes}:${secondsString}`;
+  // }, [timer.seconds, timer.minutes]);
 
   const moves = useMemo(() => {
     const currentPlayer = players.find((player) => player.id === playerIdTurn);
