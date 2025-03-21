@@ -7,7 +7,6 @@ export const useGameStore = create<GameState>()((set) => ({
   players: [],
   memoryItems: [],
   playerIdTurn: 0,
-  timer: { seconds: 0, minutes: 0, resetTimer: () => {}, stopTimer: () => {} },
   
   increasePlayerPoints: (playerId: number) => {
     set((state) => ({
@@ -27,7 +26,7 @@ export const useGameStore = create<GameState>()((set) => ({
       if (!currentPlayer) {
         return state;
       }
-
+      
       const nextPlayerIndex = (state.players.indexOf(currentPlayer) + 1);
       let playerIdTurn: number = 0;
 
@@ -38,11 +37,10 @@ export const useGameStore = create<GameState>()((set) => ({
       }
 
       return {
-        ...state,
         playerIdTurn,
         players: state.players.map((player) => {
           if (player.id === playerId) {
-            return { ...player, points: player.moves + 1 };
+            return { ...player, moves: player.moves + 1 };
           }
           return player;
         }),

@@ -1,0 +1,29 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.statusCard {
+  background-color: $gray;
+  padding: 10px 40px;
+  @include centerContent();
+  flex-direction: column;
+  gap: 10px;
+  font-weight: $font-bold;
+  border-radius: 5px;
+  color: $text-dark;
+  &.active {
+    background-color: $orange;
+    color: white;
+  }
+  @media screen and (max-width: $breakpoint-md) {
+    padding: 10px 30px;
+  }
+  .label {
+    font-size: 15px;
+  }
+  .status {
+    font-size: 25px;
+    @media screen and (max-width: $breakpoint-md) {
+      font-size: 20px;
+    }
+  }
+}

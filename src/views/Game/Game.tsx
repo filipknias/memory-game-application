@@ -7,6 +7,8 @@ import GameHeader from "@/components/GameHeader/GameHeader";
 import GameBoard from "@/components/GameBoard/GameBoard";
 import { useGameStore } from "@/store";
 import { generateMemoryItems } from "@/utilities/generateMemoryItems";
+import SinglePlayerBoardStatus from "@/components/BoardStatus/SinglePlayerBoardStatus";
+import MultiPlayerBoardStatus from "@/components/BoardStatus/MultiPlayerBoardStatus";
 
 const Game = () => {
   const [searchParams] = useSearchParams();
@@ -46,9 +48,9 @@ const Game = () => {
           gridSize={gridSize} 
           playersCount={playersCount} 
         />
-        {/* <BoardStatus>
+        <div className={styles.gameStatusContainer}>
           {playersCount === 1 ? <SinglePlayerBoardStatus /> : <MultiPlayerBoardStatus />}
-        </BoardStatus> */}
+        </div>
       </div>
     </div>
   )

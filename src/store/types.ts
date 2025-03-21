@@ -4,7 +4,6 @@ export type GameState = {
   players: Player[];
   memoryItems: MemoryItem[];
   playerIdTurn: number;
-  timer: Timer;
   increasePlayerPoints: (playerId: number) => void;
   increasePlayerMoves: (playerId: number, playersCount: number) => void;
   markMemoryItemOpened: (itemId: number) => void;

@@ -4,6 +4,7 @@ import { GameBoardProps } from './GameBoard.types';
 import cx from "clsx";
 import { useEffect, useState } from 'react';
 import { MemoryItem } from '@/store/types';
+import { useTimer } from '@/hooks/useTimer';
 
 const GameBoard = ({ gridSize, playersCount }: GameBoardProps) => {
   const [clickDisabled, setClickDisabled] = useState(false);
@@ -17,12 +18,10 @@ const GameBoard = ({ gridSize, playersCount }: GameBoardProps) => {
     players,
     playerIdTurn,
     increasePlayerMoves,
-    timer
   } = useGameStore();
+  const timer = useTimer();
 
   useEffect(() => {
-    if (memoryItems.length === 0) return;
-
     const openedItems = memoryItems.filter((item) => item.opened);
     if (openedItems.length >= 2) {
       setClickDisabled(true);
