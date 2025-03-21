@@ -12,7 +12,12 @@ import MultiPlayerBoardStatus from "@/components/BoardStatus/MultiPlayerBoardSta
 
 const Game = () => {
   const [searchParams] = useSearchParams();
-  const { setupPlayers, setMemoryItems, startTimer } = useGameStore();
+  const { 
+    setupPlayers, 
+    setMemoryItems, 
+    startTimer,
+    stopTimer,
+  } = useGameStore();
 
   const theme = useMemo((): Theme => {
     const theme = searchParams.get('theme');
@@ -42,6 +47,10 @@ const Game = () => {
 
   useEffect(() => {
     startTimer();
+    
+    return () => {
+      stopTimer();
+    }
   }, []);
 
   return (

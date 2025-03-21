@@ -105,6 +105,7 @@ export const useGameStore = create<GameState>()((set, get) => ({
 
   startTimer: () => {
     if (get().intervalId) return;
+    set({ time: 0, intervalId: null });
 
     const id = setInterval(() => {
       set((state) => ({ time: state.time + 1 }));
