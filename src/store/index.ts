@@ -6,7 +6,7 @@ import { generateMemoryItems } from '@/utilities/generateMemoryItems';
 export const useGameStore = create<GameState>()((set, get) => ({
   players: [],
   memoryItems: [],
-  playerIdTurn: 0,
+  playerIdTurn: 1,
   time: 0,
   intervalId: null,
   
@@ -30,7 +30,7 @@ export const useGameStore = create<GameState>()((set, get) => ({
       }
       
       const nextPlayerIndex = (state.players.indexOf(currentPlayer) + 1);
-      let playerIdTurn: number = 0;
+      let playerIdTurn: number = 1;
 
       if (nextPlayerIndex > playersCount - 1) {
         playerIdTurn = state.players[0].id;
