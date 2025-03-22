@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "./GameHeader.module.scss";
 import cx from "clsx";
+import { useGameStore } from "@/store";
+import { GameHeaderProps } from "./GameHeader.props";
 
-const GameHeader = () => {
+const GameHeader = ({ theme, gridSize }: GameHeaderProps) => {
+  const { resetGame, resetTimer } = useGameStore();
+
+  const handleGameReset = () => {
+    resetGame(theme, gridSize);
+    resetTimer();
+  };
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.heading}>Memory Game</h1>
@@ -10,7 +19,7 @@ const GameHeader = () => {
         <button 
           className={cx(styles.button, styles.resetButton)} 
           role="reset-button" 
-          onClick={() => {}}
+          onClick={handleGameReset}
         >
           Reset
         </button>

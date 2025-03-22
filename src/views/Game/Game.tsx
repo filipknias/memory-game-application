@@ -56,7 +56,10 @@ const Game = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
-        <GameHeader />
+        <GameHeader 
+          theme={theme} 
+          gridSize={gridSize} 
+        />
         <GameBoard 
           gridSize={gridSize} 
           playersCount={playersCount} 
