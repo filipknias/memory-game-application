@@ -7,6 +7,10 @@
   background-color: $gray;
   padding: 12px 24px;
   .headingWrapper {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    background-color: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,10 +24,7 @@
         font-weight: $font-bold;
       }
     }
-    .accordionButton {
-      border: none;
-      background: transparent;
-      cursor: pointer;
+    .accordionIcon {
       &.active {
         transform: rotate(-180deg);
       }

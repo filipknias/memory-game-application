@@ -15,23 +15,20 @@ const GameRecord = ({
   winnerPlayerId,
   type,
 }: GameRecordProps) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.headingWrapper}>
+      <button className={styles.headingWrapper} onClick={() => setOpen(!open)}>
         <h5 className={styles.heading}>
           <span className={styles.boldText}>#{index + 1}</span>
           {formatDate(dateString)} {" "}
           ({type === 'singleplayer' ? "Singleplayer" : "Multiplayer"})
         </h5>
-        <button 
-          className={cx(styles.accordionButton, open && styles.active)}
-          onClick={() => setOpen(!open)}
-        >
+        <div className={cx(styles.accordionIcon, open && styles.active)}>
           <FontAwesomeIcon icon={faChevronDown} />
-        </button>
-      </div>
+        </div>
+      </button>
       <div className={cx(styles.content, open && styles.opened)}>
         {type === 'multiplayer' && (
           <div className={styles.overviewGrid}>
