@@ -4,6 +4,8 @@ import cx from 'clsx';
 import { useState } from "react";
 import { GridSize, PlayersCount, Theme } from "@/shared/types";
 import { DEFAULT_GRID_SIZE, DEFAULT_PLAYERS_COUNT, DEFAULT_THEME } from "@/constants/defaults";
+import Card from "@/components/Card/Card";
+import GameHistory from "@/components/GameHistory/GameHistory";
 
 const Home = () => {
   const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
@@ -14,7 +16,7 @@ const Home = () => {
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <h1 className={styles.header}>Memory Game</h1>
-        <div className={styles.settingsContainer}>
+        <Card>
           <div className={styles.settingGroup}>
             <h2 className={styles.settingLabel}>Select Theme</h2>
             <div className={styles.buttonGroup}>
@@ -89,7 +91,8 @@ const Home = () => {
           <Link to={`/game?theme=${theme}&players=${players}&gridSize=${gridSize}`} className={styles.startButton}>
             Start game
           </Link>
-        </div>
+        </Card>
+        <GameHistory />
       </div>
     </div>
   )

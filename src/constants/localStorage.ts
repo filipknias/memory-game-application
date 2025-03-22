@@ -1,0 +1,1 @@
+export const SAVED_GAMES_KEY = 'memory-games-history';

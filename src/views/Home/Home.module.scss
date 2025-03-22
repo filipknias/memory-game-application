@@ -3,10 +3,11 @@
 
 .wrapper {
   background-color: $background-dark;
+  padding: 80px 0;
   
   .content {
     width: 40%;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 20px;
     @include centerContent();
@@ -41,47 +42,34 @@
       gap: 10px;
     }
 
-    .settingsContainer {
-      background-color: white;
-      border-radius: 20px;
-      padding: 40px;
-      width: 100%;
+    .settingGroup {
       display: flex;
       flex-direction: column;
-      gap: 40px;
-      @media screen and (max-width: $breakpoint-md) {
-        padding: 30px;
-        gap: 30px;
-      }
-      .settingGroup {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        .settingLabel {
-          color: $text-light;
-          font-weight: $font-bold;
-          font-size: 20px;
-          @media screen and (max-width: $breakpoint-md) {
-            font-size: 15px;
-          }
+      gap: 10px;
+      .settingLabel {
+        color: $text-light;
+        font-weight: $font-bold;
+        font-size: 20px;
+        @media screen and (max-width: $breakpoint-md) {
+          font-size: 15px;
         }
-        .settingButton {
-          background-color: $gray;
-          color: white;
-          padding: 10px 20px;
-          border-radius: 20px;
-          border: none;
-          cursor: pointer;
-          font-size: 25px;
-          flex: 1;
-          font-weight: $font-bold;
-          transition: background-color 0.2s ease-out;
-          &.active {
-            background-color: $background-dark;
-          }
-          @media screen and (max-width: $breakpoint-md) {
-            font-size: 20px;
-          }
+      }
+      .settingButton {
+        background-color: $gray;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 25px;
+        flex: 1;
+        font-weight: $font-bold;
+        transition: background-color 0.2s ease-out;
+        &.active {
+          background-color: $background-dark;
+        }
+        @media screen and (max-width: $breakpoint-md) {
+          font-size: 20px;
         }
       }
     }

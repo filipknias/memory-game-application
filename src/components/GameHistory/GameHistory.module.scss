@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.heading {
+  font-size: 28px;
+  font-weight: $font-bold;
+  color: black;
+  margin-bottom: 12px;
+  @media screen and (max-width: $breakpoint-md) {
+    font-size: 25px;
+  }
+  @media screen and (max-width: $breakpoint-sm) {
+    font-size: 22px;
+  }
+}
+
+.historyWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

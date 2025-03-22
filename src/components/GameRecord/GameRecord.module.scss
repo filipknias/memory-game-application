@@ -1,0 +1,63 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.wrapper {
+  color: $text-dark;
+  border-radius: 12px;
+  background-color: $gray;
+  padding: 12px 24px;
+  .headingWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .heading {
+      font-weight: $font-normal;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      .boldText {
+        font-weight: $font-bold;
+      }
+    }
+    .accordionButton {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      &.active {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+  .content {
+    height: 0;
+    overflow: hidden;
+    &.opened {
+      height: auto;
+      margin-top: 24px;
+    }
+    .overviewGrid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 8px;
+      margin-bottom: 32px;
+      @media screen and (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 12px;
+      }
+    }
+    .statsGrid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 8px;
+      margin-bottom: 32px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      @media screen and (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
