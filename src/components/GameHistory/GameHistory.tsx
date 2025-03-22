@@ -23,6 +23,9 @@ const GameHistory = () => {
   return (
     <Card>
       <h3 className={styles.heading}>Games History</h3>
+      {historyGames.length === 0 && (
+        <p className={styles.noGamesText}>No games played yet</p>
+      )}
       <div className={styles.historyWrapper}>
         {historyGames.map((game, index) => (
           <GameRecord
